@@ -1,7 +1,15 @@
+vim.g.have_nerd_font = true
+
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 -- Make line numbers default
 vim.o.number = true
+
+-- Global default (optional)
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
