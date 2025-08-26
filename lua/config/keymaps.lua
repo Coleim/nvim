@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -31,3 +31,5 @@ vim.api.nvim_create_user_command('NeoTreeGitRefresh', function()
 end, { desc = 'Refresh Neo-tree git status' })
 
 vim.keymap.set('n', '<leader>r', ':NeoTreeGitRefresh<CR>', { desc = 'Refresh Neo-tree Git status' })
+
+vim.api.nvim_set_keymap('n', '<leader>ft', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true })
