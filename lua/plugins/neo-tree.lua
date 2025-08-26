@@ -20,10 +20,6 @@ return {
           ['\\'] = 'close_window',
         },
       },
-      use_libuv_file_watcher = true, -- 👈 auto-refresh on file changes
-    },
-    git_status = {
-      follow_behavior = 'always',
     },
   },
 }

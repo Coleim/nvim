@@ -22,3 +22,12 @@ end, { desc = 'Exit and close terminal' })
 
 -- In terminal mode, make <Space> immediately send a space
 vim.keymap.set('t', '<Space>', '<Space>', { noremap = true, silent = true })
+
+-- Manual Neo-tree git refresh
+vim.api.nvim_create_user_command('NeoTreeGitRefresh', function()
+  if package.loaded['neo-tree.sources.git_status'] then
+    require('neo-tree.sources.git_status').refresh()
+  end
+end, { desc = 'Refresh Neo-tree git status' })
+
+vim.keymap.set('n', '<leader>r', ':NeoTreeGitRefresh<CR>', { desc = 'Refresh Neo-tree Git status' })
