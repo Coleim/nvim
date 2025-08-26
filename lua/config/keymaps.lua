@@ -10,4 +10,15 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- Close terminal with <Esc><Esc>
+vim.keymap.set('t', '<Esc><Esc>', function()
+  -- First exit terminal insert mode
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', true)
+  -- Then close the terminal buffer/window
+  vim.cmd 'close' -- or vim.cmd("hide")
+end, { desc = 'Exit and close terminal' })
+
+-- In terminal mode, make <Space> immediately send a space
+vim.keymap.set('t', '<Space>', '<Space>', { noremap = true, silent = true })

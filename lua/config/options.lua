@@ -31,3 +31,7 @@ end)
 vim.o.undofile = true
 
 vim.o.relativenumber = true
+
+vim.g.lazyvim_rust_diagnostics = 'rust-analyzer'
+
+vim.opt.laststatus = 3
