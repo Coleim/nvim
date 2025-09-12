@@ -15,6 +15,17 @@ return {
   },
   opts = {
     filesystem = {
+      filtered_items = {
+        -- visible = true,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+        hide_by_name = {
+          "package-lock.json",
+          ".git",
+          ".expo",
+          "node_modules"
+        },
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',

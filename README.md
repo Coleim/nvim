@@ -24,7 +24,6 @@ npm install -g markdownlint-cli
 
 
 
-- ❌ ERROR rg: not found. `live-grep` finder will not function without [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep) installed.
 - ⚠️ WARNING fd: not found. Install [sharkdp/fd](https://github.com/sharkdp/fd) for extended capabilities
 
 

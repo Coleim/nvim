@@ -33,3 +33,17 @@ end, { desc = 'Exit and close terminal' })
 -- vim.keymap.set('n', '<leader>r', ':NeoTreeGitRefresh<CR>', { desc = 'Refresh Neo-tree Git status' })
 
 vim.api.nvim_set_keymap('n', '<leader>ft', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true })
+
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.ts", "*.tsx" },
+  callback = function(args)
+    local clients = vim.lsp.get_active_clients({ bufnr = args.buf })
+    for _, client in ipairs(clients) do
+      if client.name == "typescript-tools" then -- or "typescript-tools" if you renamed it
+        vim.cmd("TSToolsOrganizeImports")
+        break
+      end
+    end
+  end,
+})
