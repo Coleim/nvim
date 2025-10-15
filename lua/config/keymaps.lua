@@ -47,3 +47,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
   end,
 })
+
+
+-- Normal mode: move line up/down
+vim.keymap.set("n", "<C-j>", ":m .+1<CR>==", { silent = true })
+vim.keymap.set("n", "<C-k>", ":m .-2<CR>==", { silent = true })
+
+-- Visual mode: move selection up/down
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { silent = true })
