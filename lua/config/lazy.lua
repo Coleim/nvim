@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-      { out, 'WarningMsg' },
+      { out,                            'WarningMsg' },
       { '\nPress any key to exit...' },
     }, true, {})
     vim.fn.getchar()
@@ -26,7 +26,7 @@ require('lazy').setup({
   -- 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
   install = { colorscheme = { 'habama' } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  -- checker = { enabled = true },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -51,8 +51,8 @@ require('lazy').setup({
     -- automatically check for plugin updates
     enabled = false,
     concurrency = nil, ---@type number? set to 1 to check for updates very slowly
-    notify = true, -- get a notification when new updates are found
-    frequency = 3600, -- check for updates every hour
+    notify = true,        -- get a notification when new updates are found
+    frequency = 3600,     -- check for updates every hour
     check_pinned = false, -- check for pinned packages that can't be updated
   },
 })
