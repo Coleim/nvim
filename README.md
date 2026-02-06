@@ -7,6 +7,7 @@
 
 > npm install -g typescript typescript-language-server eslint prettier
 
+
 #### React
 
 > npm install -g eslint-config-react eslint-plugin-react
