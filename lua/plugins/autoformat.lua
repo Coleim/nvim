@@ -31,6 +31,7 @@ return { -- Autoformat
     formatters_by_ft = {
       lua = { 'stylua' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
+      json = { "prettier" },
       -- ADD THESE 👇
       -- css = { 'prettier' },
       -- scss = { 'prettier' },
