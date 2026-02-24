@@ -23,7 +23,7 @@ return { -- Autoformat
         return nil
       else
         return {
-          timeout_ms = 500,
+          timeout_ms = 2000,
           lsp_format = 'fallback',
         }
       end
@@ -33,9 +33,9 @@ return { -- Autoformat
       rust = { 'rustfmt', lsp_format = 'fallback' },
       json = { "prettier" },
 
-      -- css = { 'prettier' },
-      -- scss = { 'prettier' },
-      -- html = { 'prettier' },
+      css = { 'prettierd', 'prettier', stop_after_first = true },
+      scss = { 'prettierd', 'prettier', stop_after_first = true },
+      html = { 'prettierd', 'prettier', stop_after_first = true },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --

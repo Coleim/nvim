@@ -206,6 +206,10 @@ return {
             procMacro = { enable = true },
           },
         },
+        on_attach = function(client)
+          -- Disable rust_analyzer formatting, let rustfmt handle it via conform.nvim
+          client.server_capabilities.documentFormattingProvider = false
+        end,
       },
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -239,15 +243,20 @@ return {
           scss = { validate = true },
           less = { validate = true },
         },
+        on_attach = function(client)
+          -- Disable cssls formatting, let Prettier handle it
+          client.server_capabilities.documentFormattingProvider = false
+        end,
       },
 
       eslint = {
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        on_attach = function(client, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
+        -- NOTE: Removed EslintFixAll on save to avoid conflicts with Prettier.
+        -- Formatting is handled by conform.nvim (Prettier).
+        -- ESLint diagnostics still work, use code actions to fix issues manually.
+        on_attach = function(client)
+          -- Disable eslint formatting, let Prettier handle it
+          client.server_capabilities.documentFormattingProvider = false
         end,
       },
 
