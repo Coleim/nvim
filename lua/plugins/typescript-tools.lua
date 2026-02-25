@@ -10,12 +10,21 @@ return {
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
 
-        -- Auto organize imports and remove unused on save
-        vim.api.nvim_create_autocmd("BufWritePre", {
+        -- Auto organize imports and remove unused AFTER save, then save again
+        local organizing = false
+        vim.api.nvim_create_autocmd("BufWritePost", {
           buffer = bufnr,
           callback = function()
-            vim.cmd("TSToolsOrganizeImports")
+            if organizing then return end
+            organizing = true
             vim.cmd("TSToolsRemoveUnused")
+            vim.cmd("TSToolsOrganizeImports")
+            vim.defer_fn(function()
+              if vim.bo[bufnr].modified then
+                vim.cmd("silent write")
+              end
+              organizing = false
+            end, 200)
           end,
         })
       end,
