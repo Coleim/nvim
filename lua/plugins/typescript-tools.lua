@@ -12,8 +12,9 @@ return {
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
         callback = function()
-          vim.cmd("TSToolsOrganizeImports sync")
-          vim.cmd("TSToolsRemoveUnused sync")
+          local api = require("typescript-tools.api")
+          api.organize_imports(true)   -- true = sync
+          api.remove_unused(true)      -- true = sync
         end,
       })
     end,
