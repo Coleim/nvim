@@ -37,15 +37,10 @@ vim.api.nvim_set_keymap('n', '<leader>ft', '<cmd>ToggleTerm<CR>', { noremap = tr
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.ts", "*.tsx" },
-  callback = function(args)
-    local clients = vim.lsp.get_active_clients({ bufnr = args.buf })
-    for _, client in ipairs(clients) do
-      if client.name == "typescript-tools" then
-        vim.cmd("TSToolsOrganizeImports")
-        vim.cmd("TSToolsRemoveUnused")
-        break
-      end
-    end
+  callback = function()
+    local api = require("typescript-tools.api")
+    api.organize_imports(true)
+    api.remove_unused(true)
   end,
 })
 
