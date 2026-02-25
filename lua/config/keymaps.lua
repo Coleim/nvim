@@ -40,8 +40,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function(args)
     local clients = vim.lsp.get_active_clients({ bufnr = args.buf })
     for _, client in ipairs(clients) do
-      if client.name == "typescript-tools" then -- or "typescript-tools" if you renamed it
+      if client.name == "typescript-tools" then
         vim.cmd("TSToolsOrganizeImports")
+        vim.cmd("TSToolsRemoveUnused")
         break
       end
     end
