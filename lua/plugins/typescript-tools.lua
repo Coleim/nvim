@@ -5,10 +5,19 @@ return {
   config = function()
     require("typescript-tools").setup({
       expose_as_code_action = "all",
-      on_attach = function(client)
+      on_attach = function(client, bufnr)
         -- Disable formatting from typescript-tools to avoid conflicts with Prettier
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
+
+        -- Auto organize imports and remove unused on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          callback = function()
+            vim.cmd("TSToolsOrganizeImports")
+            vim.cmd("TSToolsRemoveUnused")
+          end,
+        })
       end,
     })
   end,

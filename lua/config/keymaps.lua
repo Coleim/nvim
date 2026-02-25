@@ -35,16 +35,6 @@ end, { desc = 'Exit and close terminal' })
 vim.api.nvim_set_keymap('n', '<leader>ft', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true })
 
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.ts", "*.tsx" },
-  callback = function()
-    local api = require("typescript-tools.api")
-    api.organize_imports(true)
-    api.remove_unused(true)
-  end,
-})
-
-
 -- Normal mode: move line up/down
 vim.keymap.set("n", "<C-j>", ":m .+1<CR>==", { silent = true })
 vim.keymap.set("n", "<C-k>", ":m .-2<CR>==", { silent = true })
