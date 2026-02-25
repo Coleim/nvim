@@ -10,12 +10,12 @@ return {
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
 
-        -- Auto remove unused imports on save (runs before Prettier)
+        -- Auto organize imports and remove unused on save
         vim.api.nvim_create_autocmd("BufWritePre", {
           buffer = bufnr,
           callback = function()
-            local api = require("typescript-tools.api")
-            api.remove_unused(true) -- true = sync
+            vim.cmd("TSToolsOrganizeImports sync")
+            vim.cmd("TSToolsRemoveUnused sync")
           end,
         })
       end,
@@ -24,6 +24,5 @@ return {
   keys = {
     { "<leader>oi", "<cmd>TSToolsOrganizeImports<cr>", desc = "Organize Imports" },
     { "<leader>ru", "<cmd>TSToolsRemoveUnused<cr>", desc = "Remove Unused" },
-    { "<leader>am", "<cmd>TSToolsAddMissingImports<cr>", desc = "Add Missing Imports" },
   },
 }
