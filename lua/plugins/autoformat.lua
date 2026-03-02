@@ -30,7 +30,7 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      rust = { 'rustfmt' },
+      rust = { lsp_format = 'prefer' },
       json = { "prettier" },
 
       css = { 'prettierd', 'prettier', stop_after_first = true },

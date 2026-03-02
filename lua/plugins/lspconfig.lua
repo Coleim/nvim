@@ -206,10 +206,6 @@ return {
             procMacro = { enable = true },
           },
         },
-        on_attach = function(client)
-          -- Disable rust_analyzer formatting, let rustfmt handle it via conform.nvim
-          client.server_capabilities.documentFormattingProvider = false
-        end,
       },
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
