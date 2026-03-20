@@ -10,6 +10,7 @@ Personal Neovim configuration with LSP, formatting, and modern plugins.
 # macOS (Homebrew)
 brew install neovim git ripgrep fd wget
 brew install tree-sitter
+brew install tree-sitter-cli
 
 # Ubuntu/Debian
 sudo apt install neovim git ripgrep fd-find wget
