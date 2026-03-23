@@ -1,19 +1,24 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  dependencies = {
-    'windwp/nvim-ts-autotag',
+  opts = {
+    ensure_installed = {
+      'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline',
+      'query', 'vim', 'vimdoc', 'javascript', 'typescript', 'tsx', 'css', 'json',
+      'yaml', 'toml', 'rust',
+    },
   },
-  config = function()
-    require('nvim-treesitter.config').setup({
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim',
-        'vimdoc', 'javascript', 'typescript', 'tsx' },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
+  config = function(_, opts)
+    require('nvim-treesitter').setup(opts)
+
+    -- Install missing parsers immediately
+    require('nvim-treesitter.install').install(opts.ensure_installed, { summary = false })
+
+    vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
+      pattern = { 'typescriptreact', 'javascriptreact', 'typescript', 'javascript' },
+      callback = function(ev)
+        pcall(vim.treesitter.start, ev.buf)
+      end,
     })
   end,
 }
