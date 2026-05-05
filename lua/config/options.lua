@@ -43,3 +43,16 @@ vim.o.relativenumber = true
 vim.g.lazyvim_rust_diagnostics = 'rust-analyzer'
 
 vim.opt.laststatus = 3
+
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    io.write("\x1b]12;#ff0000\x07") -- red cursor on enter
+  end,
+})
+
+vim.api.nvim_create_autocmd("VimLeave", {
+  callback = function()
+    io.write("\x1b]112\x07") -- reset cursor to terminal default on exit
+  end,
+})
