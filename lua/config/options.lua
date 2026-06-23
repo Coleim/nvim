@@ -51,6 +51,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+
+vim.api.nvim_create_autocmd("TermClose", {
+  callback = function()
+    vim.defer_fn(function()
+      io.write("\x1b]12;#ff0000\x07")
+    end, 10)
+  end,
+})
+
 vim.api.nvim_create_autocmd("VimLeave", {
   callback = function()
     io.write("\x1b]112\x07") -- reset cursor to terminal default on exit
