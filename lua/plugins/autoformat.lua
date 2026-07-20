@@ -30,6 +30,7 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
+      go = { 'goimports', 'gofumpt' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       json = { "prettier" },
 
