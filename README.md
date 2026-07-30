@@ -120,12 +120,58 @@ All formatting is handled by **conform.nvim**:
 
 ## Keymaps
 
+### General
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `<leader>q` | Normal | Open diagnostic quickfix list |
+| `<leader>ft` | Normal | Toggle floating terminal |
+| `Ctrl+j` | Normal/Visual | Move line/selection down |
+| `Ctrl+k` | Normal/Visual | Move line/selection up |
+| `Shift+Tab` | Normal | Next buffer |
+| `Esc Esc` | Terminal | Exit terminal insert mode and close window |
+| `\` | Normal | Reveal current file in NeoTree |
+
+### LSP
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `grn` | Normal | Rename symbol |
+| `gra` | Normal/Visual | Code action |
+| `grr` | Normal | Go to references |
+| `gri` | Normal | Go to implementation |
+| `grd` | Normal | Go to definition |
+| `grD` | Normal | Go to declaration |
+| `grt` | Normal | Go to type definition |
+| `gO` | Normal | Document symbols |
+| `gW` | Normal | Workspace symbols |
+| `<leader>th` | Normal | Toggle inlay hints |
+
+### TypeScript / JavaScript
+
 | Key | Action |
 |-----|--------|
 | `<leader>f` | Format buffer |
-| `<leader>oi` | Organize imports (TS) |
-| `<leader>ru` | Remove unused (TS) |
-| `<leader>am` | Add missing imports (TS) |
+| `<leader>oi` | Organize imports |
+| `<leader>ru` | Remove unused imports |
+
+### Search (Telescope)
+
+| Key | Action |
+|-----|--------|
+| `<leader><leader>` | Find open buffers |
+| `<leader>/` | Fuzzy search in current buffer |
+| `<leader>sf` | Search files |
+| `<leader>sg` | Search by grep (live) |
+| `<leader>sw` | Search current word |
+| `<leader>sd` | Search diagnostics |
+| `<leader>sh` | Search help tags |
+| `<leader>sk` | Search keymaps |
+| `<leader>ss` | Search Telescope pickers |
+| `<leader>sr` | Resume last search |
+| `<leader>s.` | Search recent files |
+| `<leader>s/` | Live grep in open files |
+| `<leader>sn` | Search Neovim config files |
 
 ## Verify Installation
 
