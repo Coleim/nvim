@@ -11,6 +11,7 @@ Personal Neovim configuration with LSP, formatting, and modern plugins.
 brew install neovim git ripgrep fd wget
 brew install tree-sitter
 brew install tree-sitter-cli
+brew install glow   # markdown preview (glow.nvim)
 
 # Ubuntu/Debian
 sudo apt install neovim git ripgrep fd-find wget
@@ -23,6 +24,9 @@ Required for JS/TS tooling. Install via [nvm](https://github.com/nvm-sh/nvm) or 
 ```bash
 # macOS
 brew install node
+
+# If `node`/`npm` are installed but not found, link them (versioned node@NN formulae can unlink it):
+brew link node
 
 # Or via nvm (recommended)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
@@ -57,7 +61,7 @@ go install mvdan.cc/gofumpt@latest
 ### 1. Clone this config
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/nvim ~/.config/nvim
+git clone https://github.com/Coleim/nvim.git ~/.config/nvim
 ```
 
 ### 2. Install formatters & linters
@@ -67,10 +71,12 @@ git clone https://github.com/YOUR_USERNAME/nvim ~/.config/nvim
 brew install stylua
 
 # Prettier (for JS/TS/CSS/HTML/JSON)
-npm install -g prettier prettierd
+npm install -g prettier @fsouza/prettierd
 
 # TypeScript & ESLint
-npm install -g typescript typescript-language-server eslint
+# NOTE: pin typescript to 5.x. TypeScript 7+ has no lib/tsserver.js, which
+# typescript-tools.nvim requires ("Cannot find tsserver executable").
+npm install -g typescript@5 typescript-language-server eslint
 
 # Optional manual install for Go tools if you do not use Mason
 go install golang.org/x/tools/gopls@latest
@@ -186,6 +192,20 @@ Run these commands in Neovim to verify everything works:
 
 ## Troubleshooting
 
+### Tree-sitter query error (e.g. `Invalid node type "change"` for diff)
+
+Parsers and queries are out of sync. Update the parsers:
+
+```bash
+nvim --headless "+lua require('nvim-treesitter').update():wait(300000)" +qa
+```
+
+### Harmless `:checkhealth` warnings
+
+Missing Java/PHP/Julia/Ruby/Perl/Python/Node providers, `vim.tbl_flatten`/`vim.validate`
+deprecations (from plugins), and `blink_cmp_fuzzy lib is not downloaded` (the Lua
+fuzzy implementation is used) can be ignored.
+
 ### Formatter not found
 
 ```bash
@@ -193,7 +213,7 @@ Run these commands in Neovim to verify everything works:
 which prettier prettierd
 
 # Reinstall if needed
-npm install -g prettier prettierd
+npm install -g prettier @fsouza/prettierd
 ```
 
 ### LSP not starting

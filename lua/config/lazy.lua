@@ -27,6 +27,8 @@ require('lazy').setup({
   install = { colorscheme = { 'habama' } },
   -- automatically check for plugin updates
   -- checker = { enabled = true },
+  -- no plugin needs luarocks; avoids the hererocks health error
+  rocks = { enabled = false },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
