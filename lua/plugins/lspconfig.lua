@@ -308,25 +308,7 @@ return {
     -- })
     -- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-<<<<<<< Updated upstream
-    local tools = { 'cssls', 'eslint', 'lua_ls', 'rust_analyzer', 'html', 'prettier', 'shfmt' }
-=======
-     require('mason-tool-installer').setup {
-  ensure_installed = {
-    'gopls',
-    'goimports',
-    'gofumpt',
-    'cssls',
-    'json-lsp',
-    'eslint',
-    'lua_ls',
-    'rust_analyzer',
-    'html',
-    'prettier',
-    'shfmt',
-  },
-}
->>>>>>> Stashed changes
+    local tools = { 'cssls', 'json-lsp', 'eslint', 'lua_ls', 'rust_analyzer', 'html', 'prettier', 'shfmt' }
 
     if vim.fn.executable('go') == 1 then
       vim.list_extend(tools, { 'gopls', 'goimports', 'gofumpt' })
